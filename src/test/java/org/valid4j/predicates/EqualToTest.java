@@ -2,6 +2,8 @@ package org.valid4j.predicates;
 
 import org.junit.Test;
 
+import java.lang.annotation.ElementType;
+
 import static org.junit.Assert.*;
 import static org.valid4j.predicates.CorePredicates.equalTo;
 
@@ -98,4 +100,25 @@ public class EqualToTest {
     assertEquals("equal to 'null'", equalTo(null).toString());
   }
 
+  @Test
+  public void shouldTestTrueEnumeration() {
+    assertTrue(equalTo(ElementType.FIELD).test(ElementType.FIELD));
+  }
+
+  @Test
+  public void shouldTestFalseEnumeration() {
+    assertFalse(equalTo(ElementType.FIELD).test(ElementType.METHOD));
+    assertFalse(equalTo(ElementType.FIELD).test(null));
+  }
+
+  @Test
+  public void shouldDescribeTypeEnumeration() {
+    assertEquals("FIELD", equalTo(ElementType.FIELD).describe(ElementType.FIELD));
+    assertEquals("METHOD", equalTo(ElementType.FIELD).describe(ElementType.METHOD));
+  }
+
+  @Test
+  public void shouldBeDescriptiveEnumeration() {
+    assertEquals("equal to 'FIELD'", equalTo(ElementType.FIELD).toString());
+  }
 }

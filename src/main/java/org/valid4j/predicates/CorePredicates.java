@@ -10,6 +10,10 @@ public class CorePredicates {
         Predicate.isEqual(value));
   }
 
+  public static <T> DescriptivePredicate<T> not(DescriptivePredicate<T> pred) {
+    return pred.negate();
+  }
+
   public static <T> DescriptivePredicate<T> nullValue() {
     return new StandardPredicate<>(
         "null value",

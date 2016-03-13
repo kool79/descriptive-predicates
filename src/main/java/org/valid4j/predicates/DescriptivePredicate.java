@@ -22,4 +22,7 @@ public interface DescriptivePredicate<T> extends Predicate<T> {
   @Override
   String toString();
 
+  @Override
+  DescriptivePredicate<T> negate();
+
 }
