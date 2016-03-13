@@ -1,5 +1,6 @@
 package org.valid4j.predicates;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 public class CorePredicates {
@@ -18,6 +19,16 @@ public class CorePredicates {
     return new StandardPredicate<>(
         "null value",
         o -> o == null);
+  }
+
+  public static <T> DescriptivePredicate<T> allOf(final DescriptivePredicate<T>... predicates) {
+    return new StandardPredicate<T>(
+        "all of " + Arrays.toString(predicates),
+        o -> Arrays.stream(predicates)
+            .map(p -> p.test(o))
+            .reduce(Boolean::logicalAnd)
+            .get()
+    );
   }
 
 }
