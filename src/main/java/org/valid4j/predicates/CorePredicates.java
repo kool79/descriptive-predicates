@@ -27,9 +27,7 @@ public class CorePredicates {
         "all of " + Arrays.toString(predicates),
         o -> Arrays.stream(predicates)
             .map(p -> p.test(o))
-            .reduce(Boolean::logicalAnd)
-            .get()
-    );
+                .reduce(true, Boolean::logicalAnd));
   }
 
   public static <T> DescriptivePredicate<T> anyOf(final DescriptivePredicate<T>... predicates) {
