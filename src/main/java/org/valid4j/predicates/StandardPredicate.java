@@ -10,11 +10,7 @@ public class StandardPredicate<T> implements DescriptivePredicate<T> {
   private final Function<T, String> describer;
 
   public StandardPredicate(String description, Predicate<T> delegate) {
-    this(description, delegate, standardDescriber());
-  }
-
-  private static <U> Function<U, String> standardDescriber() {
-    return (o) -> o == null ? "null" : o.toString();
+    this(description, delegate, Objects::toString);
   }
 
   public StandardPredicate(String description, Predicate<T> delegate, Function<T, String> describer) {
