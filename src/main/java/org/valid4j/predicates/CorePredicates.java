@@ -19,6 +19,7 @@ public class CorePredicates {
     return new StandardPredicate<>(
         "null value",
         o -> o == null);
+
   }
 
   public static <T> DescriptivePredicate<T> allOf(final DescriptivePredicate<T>... predicates) {
