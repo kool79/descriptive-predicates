@@ -32,4 +32,12 @@ public class CorePredicates {
     );
   }
 
+  public static <T> DescriptivePredicate<T> anyOf(final DescriptivePredicate<T>... predicates) {
+    return new StandardPredicate<>(
+            "any of " + Arrays.toString(predicates),
+            o -> Arrays.stream(predicates)
+                    .map(p -> p.test(o))
+                    .reduce(false, Boolean::logicalOr));
+  }
+
 }
