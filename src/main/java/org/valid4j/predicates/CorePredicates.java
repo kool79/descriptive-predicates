@@ -45,4 +45,10 @@ public class CorePredicates {
                         .reduce(false, Boolean::logicalOr));
     }
 
+    public static <T> DescriptivePredicate<T> describedAs(String template, DescriptivePredicate<T> pred, Object... values) {
+        return new StandardPredicate<>(
+                String.format(template, values),
+                pred,
+                pred::describe);
+    }
 }
